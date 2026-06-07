@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Members | Admin Panel</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../../favicon.png">
+  
+  <!-- Content Security Policy -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; 
+                 script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; 
+                 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+                 font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+                 img-src 'self' https://images.unsplash.com data:;
+                 connect-src 'self' https://*.supabase.co wss://*.supabase.co;">
+  
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body class="admin-layout">
+
+  <!-- ==========================================================================
+       SIDEBAR
+       ========================================================================== -->
+  <aside class="admin-sidebar">
+    <div class="admin-sidebar-header">
+      <a href="../index.html" class="logo" style="color: white;">
+        <i class="fa-solid fa-dumbbell"></i> IRONFORGE <span>GYM</span>
+      </a>
+    </div>
+    
+    <nav class="admin-menu">
+      <ul>
+        <li class="admin-menu-item">
+          <a href="index.html" class="admin-menu-link">
+            <i class="fa-solid fa-chart-line"></i> <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="admin-menu-item">
+          <a href="members.html" class="admin-menu-link active">
+            <i class="fa-solid fa-users"></i> <span>Members</span>
+          </a>
+        </li>
+        <li class="admin-menu-item">
+          <a href="inquiries.html" class="admin-menu-link">
+            <i class="fa-solid fa-envelope-open-text"></i> <span>Inquiries</span>
+            <span class="badge-count" id="inquiry-count-badge" style="display:none;">0</span>
+          </a>
+        </li>
+        <li class="admin-menu-item">
+          <a href="trainers.html" class="admin-menu-link">
+            <i class="fa-solid fa-user-tie"></i> <span>Trainers</span>
+          </a>
+        </li>
+        <li class="admin-menu-item">
+          <a href="testimonials.html" class="admin-menu-link">
+            <i class="fa-solid fa-comments"></i> <span>Testimonials</span>
+          </a>
+        </li>
+        <li class="admin-menu-item">
+          <a href="attendance.html" class="admin-menu-link">
+            <i class="fa-solid fa-clipboard-user"></i> <span>Attendance</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    
+    <div class="admin-sidebar-footer">
+      <button class="btn btn-ghost btn-sm" id="btn-logout" style="width: 100%; border-color: rgba(255,255,255,0.2); color: white;">Logout</button>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       MAIN CONTENT
+       ========================================================================== -->
+  <main class="admin-content">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px; flex-wrap:wrap; gap:20px;">
+      <div>
+        <h2 style="font-size: 2.25rem; text-transform:none;">Manage Members</h2>
+        <p style="color:var(--text-muted); font-size:0.95rem;">Review, modify, or delete user records.</p>
+      </div>
+      <div>
+        <button class="btn btn-primary" id="btn-add-member"><i class="fa-solid fa-user-plus" style="margin-right:8px;"></i> Add Member</button>
+      </div>
+    </div>
+    
+    <!-- Controls Row -->
+    <div class="table-controls">
+      <div class="search-filter-box">
+        <input type="text" id="member-search" class="form-input" placeholder="Search by name or email..." style="max-width:280px;">
+        
+        <select id="member-plan-filter" class="form-input" style="max-width:150px; cursor:pointer;">
+          <option value="">All Plans</option>
+          <option value="basic">Basic</option>
+          <option value="pro">Pro</option>
+          <option value="elite">Elite</option>
+        </select>
+        
+        <select id="member-status-filter" class="form-input" style="max-width:150px; cursor:pointer;">
+          <option value="">All Statuses</option>
+          <option value="active">Active</option>
+          <option value="expired">Expired</option>
+          <option value="inactive">Inactive</option>
+        </select>
+      </div>
+    </div>
+    
+    <!-- Members Table -->
+    <div class="dashboard-card" style="padding:0; overflow:hidden;">
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Full Name</th>
+              <th>Email</th>
+              <th>Plan</th>
+              <th>Status</th>
+              <th>Expiry Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="members-table-body">
+            <!-- Dynamic data loaded by admin.js -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       ADD MEMBER MODAL
+       ========================================================================== -->
+  <div class="modal" id="add-member-modal">
+    <div class="modal-content">
+      <span class="modal-close"><i class="fa-solid fa-xmark"></i></span>
+      <div class="modal-header">
+        <h3>Create Member Profile</h3>
+      </div>
+      <form id="add-member-form">
+        <div class="form-group">
+          <label for="add-member-name" class="form-label">Full Name *</label>
+          <input type="text" id="add-member-name" class="form-input" placeholder="e.g. John Doe" required>
+        </div>
+        <div class="form-group">
+          <label for="add-member-email" class="form-label">Email Address *</label>
+          <input type="email" id="add-member-email" class="form-input" placeholder="john@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="add-member-phone" class="form-label">Phone Number</label>
+          <input type="tel" id="add-member-phone" class="form-input" placeholder="10-digit number">
+        </div>
+        <div class="form-group">
+          <label for="add-member-plan" class="form-label">Membership Tier *</label>
+          <select id="add-member-plan" class="form-input" required style="cursor:pointer;">
+            <option value="" disabled selected>-- Select a Plan --</option>
+            <option value="basic">Basic ($29/mo)</option>
+            <option value="pro">Pro ($59/mo)</option>
+            <option value="elite">Elite ($99/mo)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="add-member-password" class="form-label">Password *</label>
+          <input type="password" id="add-member-password" class="form-input" placeholder="••••••••" required>
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:30px;">
+          <button type="button" class="btn btn-ghost btn-modal-close">Cancel</button>
+          <button type="submit" class="btn btn-primary">Add Member</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       EDIT PLAN MODAL
+       ========================================================================== -->
+  <div class="modal" id="edit-plan-modal">
+    <div class="modal-content">
+      <span class="modal-close"><i class="fa-solid fa-xmark"></i></span>
+      <div class="modal-header">
+        <h3>Change Membership Plan</h3>
+      </div>
+      <form id="edit-plan-form">
+        <input type="hidden" id="edit-member-id">
+        <div class="form-group">
+          <label for="edit-plan-select" class="form-label">Select Tier</label>
+          <select id="edit-plan-select" class="form-input" required style="cursor:pointer;">
+            <option value="basic">Basic ($29/mo)</option>
+            <option value="pro">Pro ($59/mo)</option>
+            <option value="elite">Elite ($99/mo)</option>
+          </select>
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:30px;">
+          <button type="button" class="btn btn-ghost btn-modal-close">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast alerts -->
+  <div class="toast-container"></div>
+
+  <!-- Supabase & Scripts -->
+  <script type="module" src="../../js/auth.js"></script>
+  <script type="module" src="../../js/admin.js"></script>
+</body>
+</html>

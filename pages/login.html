@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Content Security Policy -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; 
+                 script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; 
+                 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+                 font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+                 img-src 'self' https://images.unsplash.com data:;
+                 connect-src 'self' https://*.supabase.co wss://*.supabase.co;">
+
+  <title>Login | IRONFORGE GYM</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../favicon.png">
+  
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="auth-page">
+
+  <div class="auth-container">
+    <div class="auth-header">
+      <a href="index.html" class="logo">
+        <i class="fa-solid fa-dumbbell"></i> IRONFORGE <span>GYM</span>
+      </a>
+      <h2>Welcome Back</h2>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;">Enter your credentials to access your training dashboard.</p>
+    </div>
+    
+    <!-- Info/Error Message Display -->
+    <div id="auth-alert" style="display: none; margin-bottom: 20px;"></div>
+
+    <form id="login-form">
+      <div class="form-group">
+        <label for="login-email" class="form-label">Email Address</label>
+        <input type="email" id="login-email" class="form-input form-input-bottom-border" placeholder="e.g. yourname@example.com" required>
+      </div>
+      
+      <div class="form-group" style="position: relative;">
+        <label for="login-password" class="form-label">Password</label>
+        <input type="password" id="login-password" class="form-input form-input-bottom-border" placeholder="••••••••" required>
+        <i class="fa-regular fa-eye-slash" id="toggle-password" style="position: absolute; right: 10px; top: 40px; cursor: pointer; color: var(--text-muted);"></i>
+      </div>
+      
+      <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px;">Log In</button>
+    </form>
+    
+    <div class="auth-footer">
+      <p>New to IronForge? <a href="register.html">Join Now</a></p>
+      <p style="margin-top: 15px;"><a href="index.html" style="color: var(--text-muted); font-weight: 500;"><i class="fa-solid fa-arrow-left-long"></i> Back to Homepage</a></p>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script type="module" src="../js/auth.js"></script>
+  <script>
+    // Handle parameter error message display (e.g. redirect guards)
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const errorMsg = urlParams.get('error');
+      
+      if (errorMsg) {
+        const alertEl = document.getElementById('auth-alert');
+        alertEl.style.display = 'block';
+        alertEl.className = 'warning-banner';
+        alertEl.style.padding = '12px 16px';
+        alertEl.style.fontSize = '0.9rem';
+        alertEl.style.marginBottom = '20px';
+        alertEl.style.background = '#f8d7da';
+        alertEl.style.color = '#721c24';
+        alertEl.style.borderColor = '#f5c6cb';
+        
+        // Escape HTML tags to prevent XSS
+        const textSpan = document.createElement('span');
+        textSpan.textContent = errorMsg;
+        
+        alertEl.innerHTML = `<i class="fa-solid fa-triangle-exclamation" style="color:#721c24; margin-right: 8px;"></i> `;
+        alertEl.appendChild(textSpan);
+      }
+      
+      // Password Visibility Toggle
+      const toggle = document.getElementById('toggle-password');
+      const pass = document.getElementById('login-password');
+      if (toggle && pass) {
+        toggle.addEventListener('click', () => {
+          const type = pass.getAttribute('type') === 'password' ? 'text' : 'password';
+          pass.setAttribute('type', type);
+          toggle.classList.toggle('fa-eye');
+          toggle.classList.toggle('fa-eye-slash');
+        });
+      }
+    });
+  </script>
+</body>
+</html>

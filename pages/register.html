@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Content Security Policy -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; 
+                 script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; 
+                 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+                 font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+                 img-src 'self' https://images.unsplash.com data:;
+                 connect-src 'self' https://*.supabase.co wss://*.supabase.co;">
+
+  <title>Sign Up | IRONFORGE GYM</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../favicon.png">
+  
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="auth-page" style="padding: 20px 24px;">
+
+  <div class="auth-container" style="max-width: 550px; padding: 35px;">
+    <div class="auth-header" style="margin-bottom: 24px;">
+      <a href="index.html" class="logo">
+        <i class="fa-solid fa-dumbbell"></i> IRONFORGE <span>GYM</span>
+      </a>
+      <h2>Forge Your Journey</h2>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;">Fill in details below to register your account and select your tier.</p>
+    </div>
+
+    <form id="register-form">
+      <div class="form-group">
+        <label for="register-name" class="form-label">Full Name *</label>
+        <input type="text" id="register-name" class="form-input form-input-bottom-border" placeholder="e.g. John Doe" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="register-email" class="form-label">Email Address *</label>
+        <input type="email" id="register-email" class="form-input form-input-bottom-border" placeholder="e.g. john@example.com" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="register-phone" class="form-label">Phone Number</label>
+        <input type="tel" id="register-phone" class="form-input form-input-bottom-border" placeholder="e.g. 10-digit number">
+      </div>
+      
+      <div class="form-group">
+        <label for="register-plan" class="form-label">Select Membership Plan *</label>
+        <select id="register-plan" class="form-input form-input-bottom-border" required style="cursor: pointer;">
+          <option value="" disabled>-- Choose a Membership Tier --</option>
+          <option value="basic">Basic ($29/month)</option>
+          <option value="pro">Pro ($59/month)</option>
+          <option value="elite">Elite ($99/month)</option>
+        </select>
+      </div>
+      
+      <div class="form-group" style="position: relative;">
+        <label for="register-password" class="form-label">Password (Min 8 Characters with complexity) *</label>
+        <input type="password" id="register-password" class="form-input form-input-bottom-border" placeholder="••••••••" required>
+        <i class="fa-regular fa-eye-slash" id="toggle-reg-pass" style="position: absolute; right: 10px; top: 40px; cursor: pointer; color: var(--text-muted);"></i>
+        
+        <!-- Password Strength Meter -->
+        <div id="password-strength-container" style="margin-top: 8px; display: none;">
+          <div class="strength-bar-bg" style="background: rgba(255,255,255,0.1); height: 4px; border-radius: 2px; overflow: hidden; width: 100%;">
+            <div id="password-strength-bar" style="height: 100%; width: 0%; transition: width 0.3s, background-color 0.3s;"></div>
+          </div>
+          <span id="password-strength-text" style="font-size: 0.75rem; margin-top: 4px; display: block; color: var(--text-muted);"></span>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="register-confirm-password" class="form-label">Confirm Password *</label>
+        <input type="password" id="register-confirm-password" class="form-input form-input-bottom-border" placeholder="••••••••" required>
+      </div>
+      
+      <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 15px;">Join Now</button>
+    </form>
+    
+    <div class="auth-footer" style="margin-top: 20px;">
+      <p>Already registered? <a href="login.html">Log In</a></p>
+      <p style="margin-top: 15px;"><a href="index.html" style="color: var(--text-muted); font-weight: 500;"><i class="fa-solid fa-arrow-left-long"></i> Back to Homepage</a></p>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script type="module" src="../js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Pre-select plan securely from sessionStorage, fallback to URL parameter
+      const sessionPlan = sessionStorage.getItem('selectedPlan');
+      const urlParams = new URLSearchParams(window.location.search);
+      const planParam = sessionPlan || urlParams.get('plan');
+      
+      if (planParam) {
+        const planSelect = document.getElementById('register-plan');
+        const options = Array.from(planSelect.options).map(opt => opt.value);
+        if (options.includes(planParam.toLowerCase())) {
+          planSelect.value = planParam.toLowerCase();
+        }
+        sessionStorage.removeItem('selectedPlan');
+      }
+      
+      // Password visibility toggle
+      const toggle = document.getElementById('toggle-reg-pass');
+      const pass = document.getElementById('register-password');
+      if (toggle && pass) {
+        toggle.addEventListener('click', () => {
+          const type = pass.getAttribute('type') === 'password' ? 'text' : 'password';
+          pass.setAttribute('type', type);
+          toggle.classList.toggle('fa-eye');
+          toggle.classList.toggle('fa-eye-slash');
+        });
+      }
+    });
+  </script>
+</body>
+</html>

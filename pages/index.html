@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Content Security Policy -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; 
+                 script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; 
+                 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+                 font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+                 img-src 'self' https://images.unsplash.com data:;
+                 connect-src 'self' https://*.supabase.co wss://*.supabase.co;">
+
+  <title>IRONFORGE GYM | Forge Your Strongest Self</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../favicon.png">
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="IronForge Gym offers state-of-the-art equipment, certified personal trainers, and a premium fitness community. Join today to forge your strongest self.">
+  <meta name="keywords" content="Gym, Fitness Center, Personal Training, World-class Equipment, IronForge, Strength Training">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       NAVBAR / HEADER
+       ========================================================================== -->
+  <header class="header" id="header">
+    <div class="container nav-container">
+      <a href="#home" class="logo" id="nav-logo">
+        <i class="fa-solid fa-dumbbell"></i> IRONFORGE <span>GYM</span>
+      </a>
+      
+      <nav>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="#home" class="nav-link" id="link-home">Home</a></li>
+          <li><a href="#vision" class="nav-link" id="link-vision">Vision</a></li>
+          <li><a href="#equipment" class="nav-link" id="link-equipment">Equipment</a></li>
+          <li><a href="#trainers" class="nav-link" id="link-nav-trainers">Trainers</a></li>
+          <li><a href="#why-us" class="nav-link" id="link-why-us">Why Us</a></li>
+          <li><a href="#pricing" class="nav-link" id="link-pricing">Pricing</a></li>
+          <li><a href="#contact" class="nav-link" id="link-contact">Contact</a></li>
+        </ul>
+      </nav>
+      
+      <div class="nav-cta">
+        <a href="login.html" class="btn btn-ghost btn-sm" id="btn-nav-login" style="margin-right: 10px; border-color: rgba(255,255,255,0.4); color: white;">Login</a>
+        <a href="register.html" class="btn btn-primary btn-sm" id="btn-nav-join">Join Now</a>
+      </div>
+      
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==========================================================================
+         HERO SECTION
+         ========================================================================== -->
+    <section class="hero" id="home">
+      <div class="hero-overlay"></div>
+      <div class="container">
+        <div class="hero-content" id="hero-content">
+          <h1>FORGE YOUR<br><span>STRONGEST</span> SELF</h1>
+          <p>State-of-the-art equipment. Expert trainers. Real results. Experience the premium fitness facility built for peak performance.</p>
+          <div class="hero-actions">
+            <a href="register.html" class="btn btn-primary" id="hero-btn-join">Join Now</a>
+            <a href="#vision" class="btn btn-secondary" id="hero-btn-tour">Take a Tour</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         STATS BAR
+         ========================================================================== -->
+    <section class="stats-bar" id="stats-bar">
+      <div class="container stats-container">
+        <div class="stat-item">
+          <h3 class="counter" data-target="500">0</h3>
+          <p>Members</p>
+        </div>
+        <div class="stat-item">
+          <h3 class="counter" data-target="20">0</h3>
+          <p>Trainers</p>
+        </div>
+        <div class="stat-item">
+          <h3 class="counter" data-target="50">0</h3>
+          <p>Machines</p>
+        </div>
+        <div class="stat-item">
+          <h3 class="counter" data-target="10">0</h3>
+          <p>Years</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         OUR VISION SECTION
+         ========================================================================== -->
+    <section class="section" id="vision">
+      <div class="container">
+        <div class="vision-grid" id="vision-grid">
+          <div class="vision-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80" alt="IronForge Gym interior with heavy lifting barbells" id="vision-img">
+          </div>
+          <div class="vision-text">
+            <h3>OUR VISION</h3>
+            <h2>BUILDING A POWERFUL FITNESS COMMUNITY</h2>
+            <p>At IronForge Gym, we believe fitness is not just a routine; it is a lifestyle of discipline, strength, and transformation. Our purpose is to establish an elite training space that empowers individuals to shatter boundaries and achieve their ultimate potential.</p>
+            <div class="accent-border">
+              "We don't just provide equipment; we foster a relentless culture of self-improvement and mutual support."
+            </div>
+            <a href="register.html" class="btn btn-ghost" id="vision-btn-cta">Start Your Journey</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         EQUIPMENT SECTION
+         ========================================================================== -->
+    <section class="section equipment-section" id="equipment">
+      <div class="container">
+        <div class="section-header text-center">
+          <h2>WORLD-CLASS EQUIPMENT</h2>
+          <p>Train with industry-leading machinery designed for optimal biomechanics and maximum safety.</p>
+        </div>
+        <div class="equipment-grid">
+          <!-- Card 1 -->
+          <div class="equipment-card">
+            <div class="equipment-image-container">
+              <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600" alt="Commercial Treadmill" loading="lazy">
+            </div>
+            <div class="equipment-info">
+              <h3>Pro Treadmill</h3>
+              <p>High-speed commercial treadmill with interactive training runs and customizable shock absorption.</p>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="equipment-card">
+            <div class="equipment-image-container">
+              <img src="https://images.unsplash.com/photo-1517963879433-6ad2b056d712?w=600" alt="Cable Crossover Machine" loading="lazy">
+            </div>
+            <div class="equipment-info">
+              <h3>Cable Crossover</h3>
+              <p>Multi-angle pulley system providing smooth constant resistance for total upper body sculpting.</p>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="equipment-card">
+            <div class="equipment-image-container">
+              <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600" alt="Bench Press Station" loading="lazy">
+            </div>
+            <div class="equipment-info">
+              <h3>Olympic Bench Press</h3>
+              <p>Heavy duty structural steel rack paired with premium competition barbells and bumpers.</p>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div class="equipment-card">
+            <div class="equipment-image-container">
+              <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600" alt="Lat Pulldown Machine" loading="lazy">
+            </div>
+            <div class="equipment-info">
+              <h3>Lat Pulldown</h3>
+              <p>Premium dual-cable lat pulldown station with ergonomic grip attachments for back development.</p>
+            </div>
+          </div>
+          <!-- Card 5 -->
+          <div class="equipment-card">
+            <div class="equipment-image-container">
+              <img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=600" alt="Power Squat Rack" loading="lazy">
+            </div>
+            <div class="equipment-info">
+              <h3>Power Squat Rack</h3>
+              <p>Reinforced walk-in cage with safety catches, perfect for heavy squats, overhead presses, and pulls.</p>
+            </div>
+          </div>
+          <!-- Card 6 -->
+          <div class="equipment-card">
+            <div class="equipment-image-container">
+              <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600" alt="Water Rower" loading="lazy">
+            </div>
+            <div class="equipment-info">
+              <h3>Fluid Rowing Machine</h3>
+              <p>Water-resistance system replicating authentic on-water rowing dynamics for full-body stamina.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         TRAINERS SECTION (DYNAMIC)
+         ========================================================================== -->
+    <section class="section" id="trainers">
+      <div class="container">
+        <div class="section-header text-center">
+          <h2>EXPERT TRAINING STAFF</h2>
+          <p>Learn, progress, and excel with support from our industry-certified fitness professionals.</p>
+        </div>
+        <div class="trainers-grid">
+          <!-- Dynamic contents loaded from trainers.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         WHY JOIN US SECTION
+         ========================================================================== -->
+    <section class="section why-us-section" id="why-us">
+      <div class="container">
+        <div class="section-header text-center">
+          <h2 style="color: var(--text-light)">WHY CHOOSE US?</h2>
+          <p style="color: var(--text-muted-dark)">We provide a comprehensive ecosystem designed to accelerate your personal fitness goals.</p>
+        </div>
+        <div class="why-us-grid">
+          <!-- Card 1 -->
+          <div class="why-card">
+            <div class="why-icon-container">
+              <i class="fa-solid fa-weight-hanging"></i>
+            </div>
+            <h3>Premium Equipment</h3>
+            <p>Access high-end, bio-mechanically engineered machines from the world's leading brands.</p>
+          </div>
+          <!-- Card 2 -->
+          <div class="why-card">
+            <div class="why-icon-container">
+              <i class="fa-solid fa-user-tie"></i>
+            </div>
+            <h3>Expert Trainers</h3>
+            <p>Work directly with elite, certified fitness professionals who customize plans for your body.</p>
+          </div>
+          <!-- Card 3 -->
+          <div class="why-card">
+            <div class="why-icon-container">
+              <i class="fa-regular fa-clock"></i>
+            </div>
+            <h3>Open 5AM–11PM</h3>
+            <p>Train on your own schedule with expansive daily opening hours that fit your busy routine.</p>
+          </div>
+          <!-- Card 4 -->
+          <div class="why-card">
+            <div class="why-icon-container">
+              <i class="fa-solid fa-people-group"></i>
+            </div>
+            <h3>Supportive Community</h3>
+            <p>Surround yourself with passionate, disciplined individuals working together to elevate each other.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         MEMBERSHIP PRICING SECTION
+         ========================================================================== -->
+    <section class="section" id="pricing">
+      <div class="container">
+        <div class="section-header text-center">
+          <h2>SIMPLE, TRANSPARENT PRICING</h2>
+          <p>No hidden signup fees. Flexible memberships tailored to your training requirements.</p>
+        </div>
+        <div class="pricing-grid">
+          <!-- Dynamic content from plans.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         TESTIMONIALS SECTION
+         ========================================================================== -->
+    <section class="section testimonials-section" id="testimonials">
+      <div class="container">
+        <div class="section-header text-center">
+          <h2>REAL RESULTS. REAL PEOPLE.</h2>
+          <p>Hear from members who transformed their bodies, discipline, and health at IronForge.</p>
+        </div>
+        <div class="testimonials-grid">
+          <!-- Dynamic contents loaded by the inline module script below -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         CONTACT + CTA SECTION
+         ========================================================================== -->
+    <section class="section contact-cta-section" id="contact">
+      <div class="container">
+        <div class="cta-box" style="margin-bottom: 60px;">
+          <h2>READY TO START YOUR JOURNEY?</h2>
+          <p>Get in touch with us today or sign up directly online. First session is completely free.</p>
+          <a href="register.html" class="btn btn-primary" id="cta-btn-join">Join Today</a>
+        </div>
+        
+        <div class="vision-grid" style="align-items: start; margin-bottom: 60px;">
+          <!-- Left Column: Contact details -->
+          <div class="contact-info-col" style="text-align: left;">
+            <h3 style="font-size: 1.5rem; margin-bottom: 20px;">OUR FACILITY</h3>
+            <p style="color: var(--text-muted); margin-bottom: 40px;">Feel free to drop by, call, or email our support staff at any time. We are here to support your fitness transition.</p>
+            
+            <div style="display: flex; flex-direction: column; gap: 24px;">
+              <div style="display: flex; gap: 15px; align-items: center;">
+                <div class="info-icon" style="margin-bottom: 0; min-width: 40px;"><i class="fa-solid fa-location-dot"></i></div>
+                <div>
+                  <h4 style="font-family: var(--font-body); font-size: 1rem; margin-bottom: 2px;">Address</h4>
+                  <p style="color: var(--text-muted); font-size: 0.9rem;">123 Performance Way, New York, NY 10001</p>
+                </div>
+              </div>
+              <div style="display: flex; gap: 15px; align-items: center;">
+                <div class="info-icon" style="margin-bottom: 0; min-width: 40px;"><i class="fa-solid fa-phone"></i></div>
+                <div>
+                  <h4 style="font-family: var(--font-body); font-size: 1rem; margin-bottom: 2px;">Phone</h4>
+                  <p style="color: var(--text-muted); font-size: 0.9rem;">+1 (555) 019-2834</p>
+                </div>
+              </div>
+              <div style="display: flex; gap: 15px; align-items: center;">
+                <div class="info-icon" style="margin-bottom: 0; min-width: 40px;"><i class="fa-solid fa-envelope"></i></div>
+                <div>
+                  <h4 style="font-family: var(--font-body); font-size: 1rem; margin-bottom: 2px;">Email</h4>
+                  <p style="color: var(--text-muted); font-size: 0.9rem;">info@ironforgegym.com</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Right Column: Contact form -->
+          <div class="contact-form-col" style="text-align: left; background: var(--secondary-bg); padding: 40px; border-radius: var(--border-radius-lg);">
+            <h3 style="font-size: 1.5rem; margin-bottom: 20px;">SEND INQUIRY</h3>
+            <form id="contact-form">
+              <div class="form-group">
+                <label for="contact-name" class="form-label">Full Name</label>
+                <input type="text" id="contact-name" class="form-input form-input-bottom-border" placeholder="e.g. John Doe" required>
+              </div>
+              <div class="form-group">
+                <label for="contact-email" class="form-label">Email Address</label>
+                <input type="email" id="contact-email" class="form-input form-input-bottom-border" placeholder="e.g. john@example.com" required>
+              </div>
+              <div class="form-group">
+                <label for="contact-phone" class="form-label">Phone Number (Optional)</label>
+                <input type="tel" id="contact-phone" class="form-input form-input-bottom-border" placeholder="e.g. 1234567890">
+              </div>
+              <div class="form-group">
+                <label for="contact-message" class="form-label">Message</label>
+                <textarea id="contact-message" class="form-input form-input-bottom-border" rows="4" placeholder="How can we help you?" required style="resize: none;"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 15px;">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h3><i class="fa-solid fa-dumbbell"></i> IRONFORGE <span>GYM</span></h3>
+          <p>IronForge Gym is a high-performance fitness center committed to offering elite-level equipment, expert guidance, and an intense training community.</p>
+        </div>
+        
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#vision">Vision</a></li>
+            <li><a href="#equipment">Equipment</a></li>
+            <li><a href="#trainers">Trainers</a></li>
+            <li><a href="#why-us">Why Us</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <p style="margin-bottom: 15px; color: var(--text-muted-dark); font-size: 0.9rem;">Join our community online for daily tips and motivation.</p>
+          <div class="social-icons">
+            <a href="https://instagram.com" class="social-icon" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://facebook.com" class="social-icon" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://youtube.com" class="social-icon" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 IronForge Gym. All Rights Reserved.</p>
+        <p>Premium Gym Client Presentation Demo</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../js/script.js"></script>
+  
+  <!-- Supabase & Dynamic Modules -->
+  <script type="module" src="../js/plans.js"></script>
+  <script type="module" src="../js/trainers.js"></script>
+  <script type="module" src="../js/forms.js"></script>
+  <script type="module" src="../js/auth.js"></script>
+  
+  <!-- Testimonials Dynamic Loader -->
+  <script type="module">
+    import { getSupabase } from '../lib/supabaseClient.js';
+    
+    async function loadTestimonials() {
+      const grid = document.querySelector('.testimonials-grid');
+      if (!grid) return;
+      
+      try {
+        const supabase = await getSupabase();
+        const { data: testimonials, error } = await supabase
+          .from('testimonials')
+          .select('*')
+          .eq('approved', true)
+          .order('created_at', { ascending: false });
+          
+        if (error) throw error;
+        
+        if (testimonials && testimonials.length > 0) {
+          grid.innerHTML = '';
+          testimonials.forEach(t => {
+            const card = document.createElement('div');
+            card.className = 'testimonial-card';
+            const stars = '<i class="fa-solid fa-star"></i>'.repeat(t.rating);
+            
+            card.innerHTML = `
+              <div class="stars">${stars}</div>
+              <p class="testimonial-quote">"${t.review}"</p>
+              <div class="testimonial-user">
+                <div class="user-avatar">${t.member_name.charAt(0)}</div>
+                <div class="user-info">
+                  <h4>${t.member_name}</h4>
+                  <p>Member</p>
+                </div>
+              </div>
+            `;
+            grid.appendChild(card);
+          });
+        }
+      } catch (err) {
+        console.error('Testimonials loading error:', err);
+      }
+    }
+    
+    document.addEventListener('DOMContentLoaded', loadTestimonials);
+  </script>
+</body>
+</html>

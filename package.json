@@ -1,0 +1,14 @@
+{
+  "name": "ironforge-gym-backend",
+  "version": "1.0.0",
+  "description": "Enterprise secure backend for IronForge Gym",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "dotenv": "^16.4.5"
+  }
+}
