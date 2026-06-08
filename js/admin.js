@@ -61,6 +61,38 @@ export async function initAdminPanel() {
   }
   
   loadInquiryBadge();
+  initMobileAdminMenu();
+}
+
+// Dynamic mobile menu toggle injection for Admin Panel
+function initMobileAdminMenu() {
+  const toggleBtn = document.createElement('button');
+  toggleBtn.className = 'admin-menu-toggle';
+  toggleBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+  toggleBtn.setAttribute('aria-label', 'Toggle sidebar');
+  document.body.appendChild(toggleBtn);
+  
+  toggleBtn.addEventListener('click', () => {
+    const sidebar = document.querySelector('.admin-sidebar');
+    if (sidebar) {
+      sidebar.classList.toggle('active');
+      if (sidebar.classList.contains('active')) {
+        toggleBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+      } else {
+        toggleBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      }
+    }
+  });
+  
+  document.addEventListener('click', (e) => {
+    const sidebar = document.querySelector('.admin-sidebar');
+    if (sidebar && sidebar.classList.contains('active')) {
+      if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+        sidebar.classList.remove('active');
+        toggleBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      }
+    }
+  });
 }
 
 // Admin Activity Logger Helper
